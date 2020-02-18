@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "studyAbroad-app": {
@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "studyAbroad-app"
+    }
+  },
+  "defaultProject": "studyAbroad-app",
+  "cli": {
+    "analytics": "35289790-7396-4e63-a3cf-ee59fe4a46e4"
+  }
 }
