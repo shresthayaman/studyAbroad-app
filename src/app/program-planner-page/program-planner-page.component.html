@@ -1,0 +1,139 @@
+<div class="card">
+    <div class="card-header">
+     Create a Program
+    </div>
+    <div class="card-body">
+        <div class="createProgramContainer">
+                <!-- Left side of page: search for courses based on major, term, and program  -->
+            <div class="findProgramContianer">
+                <form #findCoursesForm="ngForm" (ngSubmit) = "onSubmitFindCourses(findCoursesForm.value)">
+                    <div class="form-group rowLabelSelect">
+                        <label style="margin-top: 7px; margin-right: 7px;" for="majorSelect">Major: </label>
+                        <select [(ngModel)]="selectedMajor" name="selectedMajor" class="form-control" id="majorSelect" (change)="onChangeSelection()">
+                            <option value="">Select a major</option>>
+                            <option *ngFor="let major of majors">{{major}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group rowLabelSelect">
+                        <label style="margin-top: 7px; margin-right: 7px;" for="termSelect">Term: </label>
+                        <select [(ngModel)]="selectedTerm" name="selectedTerm" class="form-control" id="termSelect" (change)="onChangeSelection()">
+                            <option value="">Select a term</option>>
+                            <option *ngFor="let term of terms">{{term}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group rowLabelSelect">
+                        <label style="margin-top: 7px; margin-right: 7px;" for="programSelect">Program: </label>
+                        <select [(ngModel)]="selectedProgram" name="selectedProgram" class="form-control" id="programSelect">
+                            <option value="">Select a program</option>>
+                            <option *ngFor="let program of programs">{{program}}</option>
+                        </select>
+                    </div>
+                    <span style="color:red" class="error_message" id="program_error_msg"></span>
+                    <div class=submitContianer>
+                        <button type="submit" class="btn btn-primary">Find Courses</button>
+                    </div>
+                </form>
+            </div>
+        
+        <!-- right side of page: add courses to you program by selcting them  -->
+            <div class="rightSide" >
+                <!-- Right side: approved courses  -->
+                <div class="approvedAddContainer">
+                    <div style="width:100%-20px; height:50%; margin-left:20px;" class="card">
+                        <div class="card-header">Approved Host Courses</div>
+                        <div class="card-body" style="display:flex; flex-direction: column;">  
+                            <div class="form-check">
+                                <ng-container *ngFor='let course of approvedCourses; index as i'>
+                                    <input class="form-check-input" type="checkbox" value="" [attr.id]="'courseID'+i" (change)='handleCheckApproved($event)'>
+                                    <label class="form-check-label" [attr.for]="'courseID'+i">
+                                    {{course}}
+                                    </label>
+                                    <br/>
+                                </ng-container>
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <!-- right side: add your own courses  -->
+                    <div [ngStyle]="{'width':'100%-20px', 'height':'50%', 'margin-left':'20px'}" class="card">
+                        <div class="card-header">Add Your Own Class</div>
+                        <div class="card-body" > 
+                            <span style="color:red" class="error_message" id="error_msg"></span>
+                            <div [ngStyle]="{'display':'flex', 'flex-direction': 'row'}">
+                                        <input type="text" id='addCourseInput'class="form-control" placeholder="Enter Course" aria-label="Enter Course" aria-describedby="basic-addon1">
+                                        <span class="error_message" id="error_msg"></span>
+                                        <button type='submit' mat-icon-button (click)='addCourse()'>
+                                            <mat-icon>add</mat-icon>
+                                        </button>
+                            </div>
+                            <br>
+                            <div class="form-check">
+                                <ng-container *ngFor='let course of addedCourses; index as i'>
+                                    <input class="form-check-input" type="checkbox" value="" [attr.id]="'addCourseID'+i" (change)='handleCheckUnapproved($event)'>
+                                    <label class="form-check-label" [attr.for]="'addCourseID'+i">
+                                    {{course}}
+                                    </label>
+                                    <br/>
+                                </ng-container>
+                            
+                            </div>
+
+                        </div> 
+                    </div>
+                </div> 
+                <!-- Right Side: selected courses -->
+                <div class="selectedCoursesContainer"> 
+                    <div [ngStyle]="{'width': '100%', 'height': '100%'}" class="card">
+                        <div class="card-header">Selected Courses</div>
+                        <div class="card-body" style="display:flex; flex-direction: column; "> 
+                            <div *ngFor='let course of selectedCourses'>
+                                <div [ngClass]="{'approvedBackgroundColor':course.approved, 'unapprovedBackgroundColor':!course.approved}">{{course.course}}</div>
+                                
+                            </div>
+                            <button *ngIf='selectedCourses.length != 0'type="submit" class="btn btn-primary" (click)="addToPlanner()">Add to Planner</button>
+                        </div> 
+                    </div>
+                </div> 
+            </div>
+                
+            
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header">
+     Your Program
+    </div>
+    <div class="card-body">
+        <div class="accordion" id="accordionExample">
+            <div *ngFor="let program of planner; index as i" class="card">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapse-' + i" [attr.aria-expanded]="false" [attr.aria-controls] = "'collapse-' + i">
+                    {{program.program}}
+                  </button>
+                </h5>
+              </div>
+          
+              <div [attr.id]="'collapse-' + i"  class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">UVA Course</th>
+                        <th scope="col">Host Course</th>
+                        <th scope="col">Semester</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let course of program.courses">
+                        <td>{{course.UVAcourse}}</td>
+                        <td>{{course.HostCourse}}</td>
+                        <td>{{course.semester}}</td>
+                      </tr>
+                    </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>

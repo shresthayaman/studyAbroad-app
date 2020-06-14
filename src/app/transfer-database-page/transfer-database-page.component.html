@@ -1,0 +1,80 @@
+
+<p class="headerContianer"> Transfered Courses Database</p>
+<div class="formContainer">
+    <form #searchForm="ngForm" (ngSubmit) = "onSubmit(searchForm.value)">
+        <div class="inlineInputs">
+            <div class="form-group selectInputs">
+                <label style="margin-top: 7px; margin-right: 7px;" for="majorSelect">Major: </label>
+                <select [(ngModel)]="selectedMajor" name="selectedMajor" class="form-control" id="majorSelect">
+                    <option value="">Select a major</option>>
+                    <option *ngFor="let major of majors">{{major}}</option>
+                </select>
+            </div>
+            <div class="form-group selectInputs">
+                <label style="margin-top: 7px; margin-right: 7px;" for="termSelect">Term: </label>
+                <select [(ngModel)]="selectedTerm" name="selectedTerm" class="form-control" id="termSelect">
+                  <option value="">Select a term</option>>
+                  <option *ngFor="let term of terms">{{term}}</option>
+                </select>
+            </div>
+            <div class="form-group has-search">
+                <span class="form-control-feedback"><mat-icon>search</mat-icon></span>
+                <input #freeSearch="ngModel" [(ngModel)]="freeSearchEntry" name="freeSearchEntry" type="text" class="form-control" placeholder="Search for a program, UVA Course, or Country to see previously transferred Courses">
+            </div>
+        </div>
+        <div class=submitContianer>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+  </div>
+
+  <br/>
+
+
+<!-- render result based on prior form inputs and generate table with nested *ngFor -->
+  <div class="card">
+    <div style="text-align:center;" class= "card-header">
+     Results
+    </div>
+    <div *ngIf="!empty; else emptyBlock"  style="padding:0"class="card-body">
+      <div class="accordion" id="accordionExample">
+        <div *ngFor="let program of data; index as i" class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapse-' + i" [attr.aria-expanded]="false" [attr.aria-controls] = "'collapse-' + i">
+                {{program.program}}
+              </button>
+            </h5>
+          </div>
+      
+          <div [attr.id]="'collapse-' + i"  class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">UVA Course</th>
+                    <th scope="col">Host Course</th>
+                    <th scope="col">Semester</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let course of program.courses">
+                    <td>{{course.UVAcourse}}</td>
+                    <td>{{course.HostCourse}}</td>
+                    <td>{{course.Semester}}</td>
+                  </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- div to end card-body -->
+    </div>
+    <!-- div to end card -->
+    <ng-template #emptyBlock >
+			<div style="flex:display; display:flex; flex-direction: row; justify-content: center; padding: 10px">
+        No results! Please try a different search.
+      </div>
+		</ng-template>
+  </div> 
+
+  
