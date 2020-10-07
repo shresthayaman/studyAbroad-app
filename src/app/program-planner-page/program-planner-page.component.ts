@@ -15,9 +15,12 @@ export class ProgramPlannerPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //selected fields for input
   selectedMajor = "";
   selectedTerm = "";
   selectedProgram = "";
+
+  selectedCountry = ""; 
 
   majors = [
     "Any",
@@ -39,6 +42,7 @@ export class ProgramPlannerPageComponent implements OnInit {
     "Fall",
     "J-term",
   ]
+
 
   programs= [];
 
@@ -113,6 +117,7 @@ export class ProgramPlannerPageComponent implements OnInit {
           this.programs = [];
         }
         else{
+          console.log(data)
           this.data = this.convertToWantedFormat(data);
           let arrOfPrograms = [];
           for(let i =0; i<this.data.length; i++){
@@ -135,6 +140,7 @@ export class ProgramPlannerPageComponent implements OnInit {
 
       for(let i =0; i<this.data.length; i++){
         if(this.data[i].program == this.selectedProgram){ //if the selected program is found in data
+          this.selectedCountry = this.data[i].country
           for(let j = 0; j< this.data[i].courses.length; j++){
              this.approvedCourses.push(this.data[i].courses[j].HostCourse)
           }
@@ -163,9 +169,11 @@ export class ProgramPlannerPageComponent implements OnInit {
   }
 
   convertToWantedFormat(arr){
+    console.log("convertToWantedForm:" + arr);
     let arrayOfObj= [];
     for(let i=0; i<arr.length; i++ ){ //loop through array from database
       if(arrayOfObj.length == 0){ //if its the first item being added then create an object to add
+        console.log("country:"+arr[i].country)
          arrayOfObj.push(
            {
              program: arr[i].program,
@@ -175,7 +183,8 @@ export class ProgramPlannerPageComponent implements OnInit {
                  HostCourse: arr[i].HostCourse,
                  Semester: arr[i].semester,
                }
-             ]
+             ],
+             country: arr[i].country
 
            }
          )
@@ -204,7 +213,8 @@ export class ProgramPlannerPageComponent implements OnInit {
                   HostCourse: arr[i].HostCourse,
                   Semester: arr[i].semester,
                 }
-              ]
+              ],
+              country: arr[i].country
  
             }
           )
@@ -219,7 +229,7 @@ export class ProgramPlannerPageComponent implements OnInit {
   }
 
   addToPlanner(){
-    //loop through selected courses aand if approved is true then loop through data to find corresponding program and then find corresponding course
+    //loop through selected courses and if approved is true then loop through data to find corresponding program and then find corresponding course
     let modifiedSelectedCourses = [];
     for(let i =0; i<this.selectedCourses.length; i++){
       if(this.selectedCourses[i].approved== true){
@@ -246,9 +256,12 @@ export class ProgramPlannerPageComponent implements OnInit {
 
       }
     }
+    
     let plannerObj = {
       program: this.selectedProgram,
       courses: modifiedSelectedCourses,
+      country: this.selectedCountry
+      
     }
 
 
@@ -258,6 +271,10 @@ export class ProgramPlannerPageComponent implements OnInit {
       this.userservice.setSessionForPlanner(this.planner);
     }
     
+  }
+
+  removeProgram(i){
+    console.log("attempting to remove: "+i);
   }
     
 

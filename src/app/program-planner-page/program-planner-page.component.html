@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="card-header">
+    <div class="card-header" style="background-color: #3f4444; color: white">
      Create a Program
     </div>
     <div class="card-body">
@@ -23,7 +23,7 @@
                     </div>
                     <div class="form-group rowLabelSelect">
                         <label style="margin-top: 7px; margin-right: 7px;" for="programSelect">Program: </label>
-                        <select [(ngModel)]="selectedProgram" name="selectedProgram" class="form-control" id="programSelect">
+                        <select [(ngModel)]="selectedProgram" name="selectedProgram" class="form-control" id="programSelect" >
                             <option value="">Select a program</option>>
                             <option *ngFor="let program of programs">{{program}}</option>
                         </select>
@@ -40,7 +40,7 @@
                 <!-- Right side: approved courses  -->
                 <div class="approvedAddContainer">
                     <div style="width:100%-20px; height:50%; margin-left:20px;" class="card">
-                        <div class="card-header">Approved Host Courses</div>
+                        <div class="card-header" style="background-color: #3f4444; color: white" >Approved Host Courses</div>
                         <div class="card-body" style="display:flex; flex-direction: column;">  
                             <div class="form-check">
                                 <ng-container *ngFor='let course of approvedCourses; index as i'>
@@ -56,7 +56,7 @@
                     </div>
                     <!-- right side: add your own courses  -->
                     <div [ngStyle]="{'width':'100%-20px', 'height':'50%', 'margin-left':'20px'}" class="card">
-                        <div class="card-header">Add Your Own Class</div>
+                        <div class="card-header" style="background-color: #3f4444; color: white">Add Your Own Class</div>
                         <div class="card-body" > 
                             <span style="color:red" class="error_message" id="error_msg"></span>
                             <div [ngStyle]="{'display':'flex', 'flex-direction': 'row'}">
@@ -84,7 +84,7 @@
                 <!-- Right Side: selected courses -->
                 <div class="selectedCoursesContainer"> 
                     <div [ngStyle]="{'width': '100%', 'height': '100%'}" class="card">
-                        <div class="card-header">Selected Courses</div>
+                        <div class="card-header" style="background-color: #3f4444; color: white">Selected Courses</div>
                         <div class="card-body" style="display:flex; flex-direction: column; "> 
                             <div *ngFor='let course of selectedCourses'>
                                 <div [ngClass]="{'approvedBackgroundColor':course.approved, 'unapprovedBackgroundColor':!course.approved}">{{course.course}}</div>
@@ -101,18 +101,23 @@
     </div>
 </div>
 <div class="card">
-    <div class="card-header">
-     Your Program
+    <div class="card-header" style="background-color: #3f4444; color: white">
+     Your Programs
     </div>
     <div class="card-body">
         <div class="accordion" id="accordionExample">
             <div *ngFor="let program of planner; index as i" class="card">
-              <div class="card-header" id="headingOne">
-                <h5 class="mb-0">
-                  <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapse-' + i" [attr.aria-expanded]="false" [attr.aria-controls] = "'collapse-' + i">
-                    {{program.program}}
+              <div class="card-header" id="headingOne" [ngStyle]="{'display':'flex', 'flex-direction': 'row', 'flex-wrap':'nowrap', 'justify-content': 'space-between'}">
+                <h5 >
+                  <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapse-' + i" [attr.aria-expanded]="true" [attr.aria-controls] = "'collapse-' + i">
+                    {{program.country}} : {{program.program}}
                   </button>
                 </h5>
+                <div>
+                    <button type='submit' mat-icon-button (click)='removeProgram(i)'>
+                        <mat-icon class="deleteIcon">delete</mat-icon>
+                    </button>
+                </div>
               </div>
           
               <div [attr.id]="'collapse-' + i"  class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">

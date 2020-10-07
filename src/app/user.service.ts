@@ -64,6 +64,7 @@ export class UserService {
   }
 
   get PlannerFromSession(){
-    return JSON.parse(sessionStorage.getItem('planner'));
+    
+    return JSON.parse(sessionStorage.getItem('planner')) == null? [] : JSON.parse(sessionStorage.getItem('planner'));
   }
 }
