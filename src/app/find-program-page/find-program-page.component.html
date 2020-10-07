@@ -13,36 +13,5 @@
     </div>
 </div>
 <div>
-  <!-- table of results -->
-<table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Favorite</th>
-        <th scope="col">Program</th>
-        <th scope="col">Country</th>
-        <th scope="col">Program Information</th>
-        <th scope="col">Deadline</th>
-      </tr>
-    </thead>
-    <!-- loop through programs and create row elements for results -->
-    <tbody>
-      <tr *ngFor="let program of programs; index as i">
-        <td>
-          <!-- conditally render favorites icon based on boolean value -->
-          <ng-template *ngIf="program.favorite; then showBlock; else elseBlock"></ng-template>
-          <ng-template #showBlock>
-            <button (click)="handleFavorite(i)"style="background-color: transparent;" mat-icon-button><mat-icon style="color:gold">star</mat-icon></button> 
-          </ng-template>
-          <ng-template #elseBlock>
-            <button (click)="handleFavorite(i)" style="background-color: transparent;" mat-icon-button><mat-icon >star_border</mat-icon></button>
-          </ng-template>
-        </td>
-        <td>{{program.programName}}</td>
-        <td>{{program.country}}</td>
-        <td>{{program.programInfo}}</td>
-        <td>{{program.deadline}}</td>
-      </tr>
-      <tr>
-        
-    </tbody>
-  </table>
+
+<p>Place Info About Selected Pathway Program</p>
