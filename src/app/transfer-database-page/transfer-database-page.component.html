@@ -1,5 +1,6 @@
-
-<p class="headerContianer"> Transfered Courses Database</p>
+<br>
+<h3 class="headerContianer"> Transfered Courses Database</h3>
+<br>
 <div class="formContainer">
     <form #searchForm="ngForm" (ngSubmit) = "onSubmit(searchForm.value)">
         <div class="inlineInputs">
@@ -19,7 +20,7 @@
             </div>
             <div class="form-group has-search">
                 <span class="form-control-feedback"><mat-icon>search</mat-icon></span>
-                <input #freeSearch="ngModel" [(ngModel)]="freeSearchEntry" name="freeSearchEntry" type="text" class="form-control" placeholder="Search for a program, UVA Course, or Country to see previously transferred Courses">
+                <input #freeSearch="ngModel" [(ngModel)]="freeSearchEntry" name="freeSearchEntry" type="text" class="form-control" placeholder="      Search for a program, UVA Course, or Country to see previously transferred Courses">
             </div>
         </div>
         <div class=submitContianer>
@@ -33,7 +34,7 @@
 
 <!-- render result based on prior form inputs and generate table with nested *ngFor -->
   <div class="card">
-    <div style="text-align:center;" class= "card-header">
+    <div style="text-align:center;" class= "card-header" style="background-color: #3f4444; color: white">
      Results
     </div>
     <div *ngIf="!empty; else emptyBlock"  style="padding:0"class="card-body">

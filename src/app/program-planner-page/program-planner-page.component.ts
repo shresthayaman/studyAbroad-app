@@ -273,11 +273,13 @@ export class ProgramPlannerPageComponent implements OnInit {
     
   }
 
+  //removes a program from planner by specifc index and update session
   removeProgram(i){
-    console.log("attempting to remove: "+i);
-    console.log("Before Delete"+this.planner)
-    this.planner.splice(i,1)
-    console.log("After Delete"+this.planner)
+    this.planner.splice(i,1);
+    if(this.userservice.isLoggedIn == true){
+      this.userservice.setSessionForPlanner(this.planner);
+    }
+
   }
     
 
