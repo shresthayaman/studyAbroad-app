@@ -275,6 +275,9 @@ export class ProgramPlannerPageComponent implements OnInit {
 
   removeProgram(i){
     console.log("attempting to remove: "+i);
+    console.log("Before Delete"+this.planner)
+    this.planner.splice(i,1)
+    console.log("After Delete"+this.planner)
   }
     
 
