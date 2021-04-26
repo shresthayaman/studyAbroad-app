@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ɵɵpureFunction1 } from '@angular/core';
 import { User } from './user';
+import { plannerObject } from './plannerObject';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -12,6 +13,7 @@ export class UserService {
   private loggedInUserName = sessionStorage.getItem('loggedInUserName') ? sessionStorage.getItem('loggedInUserName') : "";
   private loggedInStatus = JSON.parse(sessionStorage.getItem('loggedIn') || 'false');
   private registerStatus = false;
+  private  loggedInUserEmail = sessionStorage.getItem('loggedInUserEmail') ? sessionStorage.getItem('loggedInUserEmail') : "";
 
   constructor(private http: HttpClient) { }
 
@@ -31,13 +33,17 @@ export class UserService {
     return this.http.get(this.baseUrl+ '/logout.php?str='+params);
   }
 
-  setLoggedIn(value : boolean, name : string){
+  setLoggedIn(value : boolean, name : string, email: string){
     this.loggedInStatus = value;
     sessionStorage.setItem('loggedIn', value.toString());
 
     this.loggedInUserName = name;
     sessionStorage.setItem('loggedInUserName', name);
+
+    this.loggedInUserEmail = email;
+    sessionStorage.setItem('loggedInUserEmail', email)
   }
+
   get isLoggedIn(){
     return JSON.parse(sessionStorage.getItem('loggedIn') || this.loggedInStatus.toString());
   }
@@ -45,6 +51,11 @@ export class UserService {
   get isloggedInUserName(){
     return this.loggedInUserName;
   }
+
+  get isloggedInUserEmail(){
+    return this.loggedInUserEmail;
+  }
+
   
   destroySession(){
     sessionStorage.clear();
@@ -67,4 +78,65 @@ export class UserService {
     
     return JSON.parse(sessionStorage.getItem('planner')) == null? [] : JSON.parse(sessionStorage.getItem('planner'));
   }
+
+  //add planner object to SQL database
+  addPlanerObjToDatabase(plannerObj: plannerObject): Observable<any>{
+    return this.http.post(this.baseUrl + '/addToPlanner.php', plannerObj)
+  }
+
+  // Get all planner object specifcally for the user (search sql planner table for useremail)
+  getUserPlannerObjects(email){
+
+    let params = {
+      email: email
+    }
+    let stringParams = JSON.stringify(params);
+    let baseUrl = 'http://localhost/CS4640/studyAbroad'; //change based on local or server
+
+    return this.http.get(baseUrl+'/getUserPlannerObjects.php?str='+stringParams)
+      
+  }
+
+  // once logged in call this function to get planner items from SQL
+  onLoginGetPlannerDataForUser(){
+    if(this.isLoggedIn == true){
+      this.getUserPlannerObjects(this.isloggedInUserEmail)
+      .subscribe((data)=>{
+        this.addFromSQLToPlanner(data)
+      }, (error)=>{
+        console.log('Error ', error);  // An error occurs, handle an error in some way
+      })
+    }
+  }
+
+  addFromSQLToPlanner(userPlannerData){
+    if(userPlannerData==false || Object.keys(userPlannerData).length == 0){ //if nothing could be found make the data equal to empty and the programs displayed to empty
+      console.log("No planner data for user")
+    }
+    else{
+      let initialPlanner = [];
+      try{
+        for(let i = 0; i<userPlannerData.length; i++){
+          console.log()
+          let plannerObj = {
+            program: userPlannerData[i].program,
+            courses: JSON.parse(userPlannerData[i].transferredCourses), //convert string stored in sql back to object
+            country: userPlannerData[i].country
+          }
+          initialPlanner.push(plannerObj);
+        }
+        this.setSessionForPlanner(initialPlanner); //update planner in session
+      }catch(e){
+        console.error(e);
+      }
+    }
+  }
+
+
+  //delete planner object from SQL database
+  deletePlanerObjFromDatabase(plannerObj: plannerObject): Observable<any>{
+    return this.http.post(this.baseUrl + '/deleteFromPlanner.php', plannerObj)
+    
+  }
+
 }

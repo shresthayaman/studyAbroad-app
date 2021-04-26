@@ -2,47 +2,31 @@
 <!-- Jumbotron for quiz -->
 <div class="jumbotron text-center">
     <div class=quizContainer>
-        <div class=quizHelp>
-            <div id="quiz"></div>
-        </div>
+            <div class= quizQuestions id="quiz"></div>
         <div class="buttons">
             <button class="btn btn-primary" id="previous" (click)="showPreviousSlide()">Previous</button>
             <button class="btn btn-primary" id="next" (click)="showNextSlide()">Next</button>
-            <button class="btn btn-primary" id="submit">Find a Program</button>
+            <button class="btn btn-primary" id="submit" (click)="submitQuiz()">Find a Program</button>
         </div>
     </div>
 </div>
 <div>
-  <!-- table of results -->
-<table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Favorite</th>
-        <th scope="col">Program</th>
-        <th scope="col">Country</th>
-        <th scope="col">Program Information</th>
-        <th scope="col">Deadline</th>
-      </tr>
-    </thead>
-    <!-- loop through programs and create row elements for results -->
-    <tbody>
-      <tr *ngFor="let program of programs; index as i">
-        <td>
-          <!-- conditally render favorites icon based on boolean value -->
-          <ng-template *ngIf="program.favorite; then showBlock; else elseBlock"></ng-template>
-          <ng-template #showBlock>
-            <button (click)="handleFavorite(i)"style="background-color: transparent;" mat-icon-button><mat-icon style="color:gold">star</mat-icon></button> 
-          </ng-template>
-          <ng-template #elseBlock>
-            <button (click)="handleFavorite(i)" style="background-color: transparent;" mat-icon-button><mat-icon >star_border</mat-icon></button>
-          </ng-template>
-        </td>
-        <td>{{program.programName}}</td>
-        <td>{{program.country}}</td>
-        <td>{{program.programInfo}}</td>
-        <td>{{program.deadline}}</td>
-      </tr>
-      <tr>
-        
-    </tbody>
-  </table>
+<div>
+    <form #findPathwayForm="ngForm">
+        <ng-container *ngFor="let item of myQuestions; let i = index">
+            <div [hidden]="item.isHidden">
+                {{item.question}}
+                 <select [(ngModel)]= "item.value" name= "item.value"  class= "form-control"  id= "item.value" >
+                            <option value="">{{item.value}}</option>>
+                            <option *ngFor="let option of item.options">{{option}}</option>
+                </select>
+                <br>
+                <button  (click)="myQuestions[i].isHidden = true; myQuestions[i + 1] ? myQuestions[i + 1].isHidden = false : false">Next</button>
+            </div>
+        </ng-container>
+    </form>
+
+</div>
+    
+
+<p>Place Info About Selected Pathway Program</p>
