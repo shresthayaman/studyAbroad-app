@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
 import {UserService} from "../user.service";
+import { plannerObject } from '../plannerObject';
+import { ChildActivationStart } from '@angular/router';
 
 @Component({
   selector: 'app-program-planner-page',
@@ -12,8 +14,7 @@ export class ProgramPlannerPageComponent implements OnInit {
 
   constructor(private http: HttpClient, private userservice: UserService) { }
   
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   //selected fields for input
   selectedMajor = "";
@@ -75,7 +76,7 @@ export class ProgramPlannerPageComponent implements OnInit {
 
   };
 
-  //if user checks add to array fo selectedCourses so can display in selected course contianer
+  //if user checks box, add to array fo selectedCourses so can display in selected course contianer
   handleCheckApproved(e){
     if( (<HTMLInputElement>document.getElementById(e.target.id)).checked ){
       this.selectedCourses.push({
@@ -107,7 +108,7 @@ export class ProgramPlannerPageComponent implements OnInit {
       term: this.selectedTerm,
     }
     let stringParams = JSON.stringify(params);
-    let baseUrl = 'http://localhost/CS4640/studyAbroad';
+    let baseUrl = 'http://localhost/CS4640/studyAbroad'; //change based on local or server
 
     this.http.get(baseUrl+'/getProgramsAndClasses.php?str='+stringParams)
       .subscribe((data)=>{
@@ -133,7 +134,7 @@ export class ProgramPlannerPageComponent implements OnInit {
 
 
   onSubmitFindCourses(form: any):void{
-    if( this.checkFindCourses() ){ //if from is submited with valid info, then look through data for progame with same name as user selected and create an array of courses for it
+    if( this.checkFindCourses() ){ //if from is submited with valid info, then look through data for progams with same name as user selected and create an array of courses for it
       
       this.approvedCourses = []; //reset approved courses to be empty
       this.selectedCourses = []; //reset selected courses
@@ -257,30 +258,64 @@ export class ProgramPlannerPageComponent implements OnInit {
       }
     }
     
+    // old planner Object
     let plannerObj = {
       program: this.selectedProgram,
       courses: modifiedSelectedCourses,
       country: this.selectedCountry
       
     }
-
-
     this.planner.push(plannerObj);
-    
+
+    // new planner Object for SQL databse
+    let plannerSQL = new plannerObject(this.userservice.isloggedInUserEmail, this.selectedProgram, JSON.stringify(modifiedSelectedCourses), this.selectedCountry);
+
+    console.log(plannerSQL)
+
+    //if the user is logged in add to planner and save it
     if(this.userservice.isLoggedIn == true){
-      this.userservice.setSessionForPlanner(this.planner);
+      //add planner object to SQL database
+      this.userservice.addPlanerObjToDatabase(plannerSQL).subscribe((data) => {
+        console.log('Response from backend ', data);   
+        }, (error) => {
+              console.log('Error ', error);  // An error occurs, handle an error in some way
+        }); 
+      
+        //add Planer to session
+        this.userservice.setSessionForPlanner(this.planner); 
     }
     
   }
 
+  
   //removes a program from planner by specifc index and update session
   removeProgram(i){
+    let removedPlannerObject = new plannerObject(this.userservice.isloggedInUserEmail, this.planner[i].program, JSON.stringify(this.planner[i].courses), this.planner[i].country)
+    console.log(removedPlannerObject);
+
+    this.userservice.deletePlanerObjFromDatabase(removedPlannerObject)
+      .subscribe((data)=>{
+        console.log('Response From backend: ', data);
+      }), (error)=>{
+        console.log("Error: ", error);
+      }
+
     this.planner.splice(i,1);
+
+    // if user is logged in, remove planner item from session and SQL
     if(this.userservice.isLoggedIn == true){
       this.userservice.setSessionForPlanner(this.planner);
     }
 
   }
+
+
+  
+
+  
+
+ 
+
     
 
 

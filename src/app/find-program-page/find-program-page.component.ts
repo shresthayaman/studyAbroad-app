@@ -105,17 +105,21 @@ export class FindProgramPageComponent implements OnInit {
         "Engineering Science", 
         "Mechanical Engineering", 
         "Systems Engineering",
-      ]
+      ],
+      type: "major",
+      isHidden: false,
     },
     {
-      question: "Which year are you?",
+      question: "Which year do you want to study abroad?",
       value:'Select year',
       options: [
         "First Year",
         "Second Year",
         "Third Year",
         "Fourth Year",
-      ]
+      ],
+      type: "year",
+      isHidden: true,
     },
     {
       question: "Which season do you want to study abroad?",
@@ -125,9 +129,15 @@ export class FindProgramPageComponent implements OnInit {
         "Spring",
         "Summer",
         "January-Term"
-      ]
+      ],
+      type: "season",
+      isHidden: true,
     }
   ];
+
+  major = "";
+  year = "";
+  season = "";
 
   previousButton = document.getElementById("previous");
   nextButton = document.getElementById("next");
@@ -136,7 +146,7 @@ export class FindProgramPageComponent implements OnInit {
   currentSlide = 0;
 
   // generete html components for question for the quiz based on data and add to quiz contiainer
-  //reference from https://www.sitepoint.com/simple-javascript-quiz/
+  // reference from https://www.sitepoint.com/simple-javascript-quiz/
   buildQuiz(){
     const output = [];
     output.push(
@@ -168,14 +178,14 @@ export class FindProgramPageComponent implements OnInit {
     document.getElementById('quiz').innerHTML = output.join('');
   }
 
-  //display the question that the selector is on by modifying css attributes of question
+  // display the question that the selector is on by modifying css attributes of question
   showSlide(n){
     console.log(this.slides);
     this.slides[this.currentSlide].classList.remove('active-slide');
     this.slides[n].classList.add('active-slide');
     this.currentSlide = n;
 
-    //if at first slide dont display previous button
+    // if at first slide dont display previous button
     if(this.currentSlide === 0){
       this.previousButton.style.display = 'none';
       document.getElementById('initialDisplay').style.display='inline-block';
@@ -186,7 +196,7 @@ export class FindProgramPageComponent implements OnInit {
       document.getElementById('initialDisplay').style.display='none';
     }
 
-    //if at last slide dont display next button
+    // if at last slide dont display next button
     if(this.currentSlide === this.slides.length-1){
       this.nextButton.style.display = 'none';
       this.submitButton.style.display = 'inline-block';
@@ -211,6 +221,11 @@ export class FindProgramPageComponent implements OnInit {
   // switch from selcted gold star to unselcted gold star and vice versa
   handleFavorite(i){
     this.programs[i].favorite = !this.programs[i].favorite;
+  }
+
+  submitQuiz(){
+
+
   }
 
   

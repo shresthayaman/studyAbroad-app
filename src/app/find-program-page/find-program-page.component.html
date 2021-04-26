@@ -2,16 +2,31 @@
 <!-- Jumbotron for quiz -->
 <div class="jumbotron text-center">
     <div class=quizContainer>
-        <div class=quizHelp>
-            <div id="quiz"></div>
-        </div>
+            <div class= quizQuestions id="quiz"></div>
         <div class="buttons">
             <button class="btn btn-primary" id="previous" (click)="showPreviousSlide()">Previous</button>
             <button class="btn btn-primary" id="next" (click)="showNextSlide()">Next</button>
-            <button class="btn btn-primary" id="submit">Find a Program</button>
+            <button class="btn btn-primary" id="submit" (click)="submitQuiz()">Find a Program</button>
         </div>
     </div>
 </div>
 <div>
+<div>
+    <form #findPathwayForm="ngForm">
+        <ng-container *ngFor="let item of myQuestions; let i = index">
+            <div [hidden]="item.isHidden">
+                {{item.question}}
+                 <select [(ngModel)]= "item.value" name= "item.value"  class= "form-control"  id= "item.value" >
+                            <option value="">{{item.value}}</option>>
+                            <option *ngFor="let option of item.options">{{option}}</option>
+                </select>
+                <br>
+                <button  (click)="myQuestions[i].isHidden = true; myQuestions[i + 1] ? myQuestions[i + 1].isHidden = false : false">Next</button>
+            </div>
+        </ng-container>
+    </form>
+
+</div>
+    
 
 <p>Place Info About Selected Pathway Program</p>

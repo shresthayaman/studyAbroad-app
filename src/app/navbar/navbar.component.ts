@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
 
   loggedInUser = "";
   userLoginModel = new User('','','','');
-  userSUModel = new User('','','','');
+  userSUModel = new User('','','',''); //user signup model
 
   ngOnInit(): void {
     this.loggedInStatus = this.userservice.isLoggedIn;
@@ -31,20 +31,23 @@ export class NavbarComponent implements OnInit {
       this.userSUModel.password = "";
     }
     else{
-      console.log(this.userLoginModel);
       this.userservice.login(this.userLoginModel)
       .subscribe((data) => {
             //console.log('Response from backend ', data[0].name);
             if(data != false){ //if login was succesfull and was able to find user in database
-              this.userservice.setLoggedIn(true, data[0].name);
+              this.userservice.setLoggedIn(true, data[0].name, data[0].email);
               this.loggedInStatus = this.userservice.isLoggedIn;
               this.loggedInUser = this.userservice.isloggedInUserName;
               (<HTMLInputElement>document.getElementById("invalidLogin_error_msg")).innerHTML = "";
             }else{//if login was unsuccesfull and was not able to find user in database
-              this.userservice.setLoggedIn(false, "");
+              this.userservice.setLoggedIn(false, "", "");
               this.loggedInStatus = this.userservice.isLoggedIn;
               (<HTMLInputElement>document.getElementById("invalidLogin_error_msg")).innerHTML = "*Invalid Login Credintials";
-            }      
+            } 
+            
+            // add inital items for Planner from SQL database after succesfull login. Then reload page to update planner session 
+            this.userservice.onLoginGetPlannerDataForUser()
+            window.location.reload();
       }, (error) => {
             console.log('Error ', error);  // An error occurs, handle an error in some way
       })
