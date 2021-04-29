@@ -33,7 +33,7 @@ export class NavbarComponent implements OnInit {
     else{
       this.userservice.login(this.userLoginModel)
       .subscribe((data) => {
-            //console.log('Response from backend ', data[0].name);
+            console.log('Response from backend when login ', data[0]);
             if(data != false){ //if login was succesfull and was able to find user in database
               this.userservice.setLoggedIn(true, data[0].name, data[0].email);
               this.loggedInStatus = this.userservice.isLoggedIn;
