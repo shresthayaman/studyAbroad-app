@@ -1,0 +1,46 @@
+.row{
+    align-items: stretch
+}
+.slick-slider{
+    display: block;
+    width: 40%;
+    margin-left:auto;
+    margin-right:auto;
+
+}
+.lead{
+    text-align: center;
+}
+
+.container-1{
+    display:flex;
+}
+.container-1 div{
+    border: 1px #ccc solid;
+    padding: 10px;
+}
+
+.box-1{
+    flex:2;
+}
+.box-2{
+    flex:1;
+}
+.box-3{
+    flex:1;
+}
+
+.container-2 div{
+    border: 1px #ccc solid;
+    padding: 10px;
+}
+
+.box-4{
+    flex:1;
+}
+.box-5{
+    flex:1;
+}
+.box-6{
+    flex:1;
+}

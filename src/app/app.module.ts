@@ -11,14 +11,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {HttpClientModule} from '@angular/common/http';
-
+import { HomepageComponent } from './homepage/homepage.component';
+import { NgImageSliderModule } from 'ng-image-slider';
+import { FooterComponent } from './footer/footer.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FindProgramPageComponent,
     TransferDatabasePageComponent,
-    ProgramPlannerPageComponent
+    ProgramPlannerPageComponent,
+    HomepageComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +35,9 @@ import {HttpClientModule} from '@angular/common/http';
     MatButtonModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgImageSliderModule,
+    NgbModule,
+    SlickCarouselModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
