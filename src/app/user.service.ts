@@ -81,7 +81,7 @@ export class UserService {
       email: email
     }
     let stringParams = JSON.stringify(params);
-    let baseUrl = 'http://localhost/CS4640/studyAbroad'; //change based on local or server
+    let baseUrl = 'https://engineersabroad.uvacreate.virginia.edu/sqlDatabasePHP'; //change based on local or server
 
     return this.http.get(baseUrl+'/getUserRole.php?str='+stringParams) 
       
