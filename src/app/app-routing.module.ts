@@ -10,7 +10,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 
 const routes: Routes = [
   {path: 'Homepage', component: HomepageComponent},
-  {path: 'FindProgramPage', component: FindProgramPageComponent},
+  // {path: 'FindProgramPage', component: FindProgramPageComponent},
   {path: 'TransferDatabasePage', component: TransferDatabasePageComponent},
   {path: 'ProgramPlannerPage', component: ProgramPlannerPageComponent}
 

@@ -2,7 +2,7 @@ import { Injectable, ɵɵpureFunction1 } from '@angular/core';
 import { User } from './user';
 import { plannerObject } from './plannerObject';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject,Observable } from 'rxjs';
 
 
 @Injectable({
@@ -14,6 +14,10 @@ export class UserService {
   private loggedInStatus = JSON.parse(sessionStorage.getItem('loggedIn') || 'false');
   private registerStatus = false;
   private  loggedInUserEmail = sessionStorage.getItem('loggedInUserEmail') ? sessionStorage.getItem('loggedInUserEmail') : "";
+
+
+  private userRole: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  userRole$: Observable<string> = this.userRole.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -57,6 +61,7 @@ export class UserService {
   }
 
   
+
   destroySession(){
     sessionStorage.clear();
     this.loggedInStatus =  false;
@@ -68,6 +73,42 @@ export class UserService {
   }
   get isRegistered(){
     return this.registerStatus;
+  }
+
+  // Get all role specifcally for the user (search sql roles table for useremail)
+  getUserRole(email){
+    let params = {
+      email: email
+    }
+    let stringParams = JSON.stringify(params);
+    let baseUrl = 'http://localhost/CS4640/studyAbroad'; //change based on local or server
+
+    return this.http.get(baseUrl+'/getUserRole.php?str='+stringParams) 
+      
+  }
+
+  onLoginGetUserRole(){
+    console.log("isLoggedIN when getting role: ", this.isLoggedIn);
+    if(this.isLoggedIn == true){
+      this.getUserRole(this.isloggedInUserEmail)
+      .subscribe((data)=>{ 
+        this.setUserRole(data[0].AuthorizationLevel);
+        sessionStorage.setItem('userRole', data[0].AuthorizationLevel);
+      }, (error)=>{
+        console.log('Error getting user role', error);  // An error occurs, handle an error in some way
+      })
+    }
+  }
+
+  setUserRole(value: string){
+    this.userRole.next(value);
+  }
+  get isUserRole(){
+    return this.userRole;
+  }
+
+  get UserRoleFromSession(){
+    return sessionStorage.getItem('userRole');
   }
 
   setSessionForPlanner(plannerItems){
@@ -103,8 +144,9 @@ export class UserService {
       this.getUserPlannerObjects(this.isloggedInUserEmail)
       .subscribe((data)=>{
         this.addFromSQLToPlanner(data)
+        window.location.reload();
       }, (error)=>{
-        console.log('Error ', error);  // An error occurs, handle an error in some way
+        console.log('Error geeting planner data', error);  // An error occurs, handle an error in some way
       })
     }
   }

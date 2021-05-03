@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../user";
 import {UserService} from "../user.service";
+import {switchMap,concatMap, tap} from 'rxjs/operators';
 
 
 @Component({
@@ -16,13 +17,25 @@ export class NavbarComponent implements OnInit {
   registeredStatus = false;
 
   loggedInUser = "";
-  userLoginModel = new User('','','','');
-  userSUModel = new User('','','',''); //user signup model
+  userLoginModel = new User('','','','',false);
+  userSUModel = new User('','','','',false); //user signup model
+
+  userRole = this.userservice.isLoggedIn?this.userservice.UserRoleFromSession: "";
+  //_userRoleSubsription:any;
 
   ngOnInit(): void {
     this.loggedInStatus = this.userservice.isLoggedIn;
     this.loggedInUser = this.userservice.isloggedInUserName;
+    this.userRole = this.userservice.UserRoleFromSession
+    // this._userRoleSubsription = this.userservice.isUserRole.subscribe((value) => { 
+    //   this.userRole = value; 
+    // });
   }
+
+  // ngOnDestroy() {
+  //   //prevent memory leak when component destroyed
+  //    this._userRoleSubsription.unsubscribe();
+  //  }
 
   onSubmitLogin(form: any): void {
 
@@ -31,9 +44,8 @@ export class NavbarComponent implements OnInit {
       this.userSUModel.password = "";
     }
     else{
-      this.userservice.login(this.userLoginModel)
+      this.userservice.login(this.userLoginModel)  
       .subscribe((data) => {
-            //console.log('Response from backend ', data[0].name);
             if(data != false){ //if login was succesfull and was able to find user in database
               this.userservice.setLoggedIn(true, data[0].name, data[0].email);
               this.loggedInStatus = this.userservice.isLoggedIn;
@@ -44,24 +56,28 @@ export class NavbarComponent implements OnInit {
               this.loggedInStatus = this.userservice.isLoggedIn;
               (<HTMLInputElement>document.getElementById("invalidLogin_error_msg")).innerHTML = "*Invalid Login Credintials";
             } 
-            
+
+            // get userRole after succesful login
+            this.userservice.onLoginGetUserRole();
+
             // add inital items for Planner from SQL database after succesfull login. Then reload page to update planner session 
             this.userservice.onLoginGetPlannerDataForUser()
-            window.location.reload();
+            
       }, (error) => {
-            console.log('Error ', error);  // An error occurs, handle an error in some way
+            console.log('Error during login: ', error);  // An error occurs, handle an error in some way
       })
     }
     
   }
 
   onSubmitRegister(form: any): void {
-    console.log('You submitted value: ', form);
+    console.log('You submitted value: ', this.userSUModel);
     if(this.checkSignUp()==false){
       this.userSUModel.name = "";
       this.userSUModel.email = "";
       this.userSUModel.password = "";
       this.userSUModel.confirmpassword = "";
+      this.userSUModel.requestedAdminAccess = false;
     }
     else{
       this.userservice.createUser(this.userSUModel)
@@ -91,9 +107,8 @@ export class NavbarComponent implements OnInit {
     })
   }
 
+  // Ensures that user is putting in the right inputs for Login
   checkLogin(){
-    //var usernameInput = (<HTMLInputElement>document.getElementById("email"));   
-    //console.log(usernameInput.value.length )
     let valid = true;
     if (this.userLoginModel.email.length <= 0)
     {
@@ -104,9 +119,6 @@ export class NavbarComponent implements OnInit {
       (<HTMLInputElement>document.getElementById("email_error_msg")).innerHTML = "";  
       (<HTMLInputElement>document.getElementById("email")).value = ""
     }
-
-    //var passwordInput = (<HTMLInputElement>document.getElementById("password"));   
-    //console.log(passwordInput.value.length )
     
     if (this.userLoginModel.password.length <= 0)
     {
@@ -122,6 +134,7 @@ export class NavbarComponent implements OnInit {
 
   }
 
+  // Ensures that user is putting in the right inputs for Registering
   checkSignUp(){
     //var usernameInput = (<HTMLInputElement>document.getElementById("usernameSU")); 
     let valid = true;  

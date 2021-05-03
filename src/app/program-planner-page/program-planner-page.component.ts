@@ -76,7 +76,7 @@ export class ProgramPlannerPageComponent implements OnInit {
 
   };
 
-  //if user checks box, add to array fo selectedCourses so can display in selected course contianer
+  //if user checks box, add to array of selectedCourses so can display in selected course contianer
   handleCheckApproved(e){
     if( (<HTMLInputElement>document.getElementById(e.target.id)).checked ){
       this.selectedCourses.push({
@@ -265,7 +265,12 @@ export class ProgramPlannerPageComponent implements OnInit {
       country: this.selectedCountry
       
     }
-    this.planner.push(plannerObj);
+
+    //if user is not logged in add to planner
+    if(this.userservice.isLoggedIn == false){
+      this.planner.push(plannerObj);
+    }
+    
 
     // new planner Object for SQL databse
     let plannerSQL = new plannerObject(this.userservice.isloggedInUserEmail, this.selectedProgram, JSON.stringify(modifiedSelectedCourses), this.selectedCountry);
@@ -276,11 +281,13 @@ export class ProgramPlannerPageComponent implements OnInit {
     if(this.userservice.isLoggedIn == true){
       //add planner object to SQL database
       this.userservice.addPlanerObjToDatabase(plannerSQL).subscribe((data) => {
-        console.log('Response from backend ', data);   
+        console.log('Response from backend ', data); 
+        this.planner.push(plannerObj);  //if user is logged in and no error occurs when adding to database add to planner
         }, (error) => {
               console.log('Error ', error);  // An error occurs, handle an error in some way
         }); 
       
+
         //add Planer to session
         this.userservice.setSessionForPlanner(this.planner); 
     }
