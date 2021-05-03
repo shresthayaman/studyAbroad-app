@@ -21,7 +21,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  baseUrl = 'http://localhost/CS4640/studyAbroad';
+  baseUrl = 'https://engineersabroad.uvacreate.virginia.edu/sqlDatabasePHP';
 
   createUser(user: User): Observable<any>{
     return this.http.post(this.baseUrl + '/register.php', user);
@@ -132,7 +132,7 @@ export class UserService {
       email: email
     }
     let stringParams = JSON.stringify(params);
-    let baseUrl = 'http://localhost/CS4640/studyAbroad'; //change based on local or server
+    let baseUrl = 'https://engineersabroad.uvacreate.virginia.edu/sqlDatabasePHP'; //change based on local or server
 
     return this.http.get(baseUrl+'/getUserPlannerObjects.php?str='+stringParams)
       
