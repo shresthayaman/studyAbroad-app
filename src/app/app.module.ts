@@ -16,6 +16,7 @@ import { NgImageSliderModule } from 'ng-image-slider';
 import { FooterComponent } from './footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +39,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     NgImageSliderModule,
     NgbModule,
     SlickCarouselModule,
+    MDBBootstrapModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

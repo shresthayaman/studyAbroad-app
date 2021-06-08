@@ -66,6 +66,7 @@ export class UserService {
     sessionStorage.clear();
     this.loggedInStatus =  false;
     this.loggedInUserName = "";
+    this.userRole.next("")
   }
 
   setRegistered(value: boolean){
