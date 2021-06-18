@@ -78,6 +78,7 @@ export class ProgramPlannerPageComponent implements OnInit {
 
   //if user checks box, add to array of selectedCourses so can display in selected course contianer
   handleCheckApproved(e){
+    console.log(e);
     if( (<HTMLInputElement>document.getElementById(e.target.id)).checked ){
       this.selectedCourses.push({
         course: e.target.labels[0].innerText,
@@ -108,8 +109,8 @@ export class ProgramPlannerPageComponent implements OnInit {
       term: this.selectedTerm,
     }
     let stringParams = JSON.stringify(params);
-    let baseUrl = 'https://engineersabroad.uvacreate.virginia.edu/sqlDatabasePHP'; //change based on local or server
-
+    //let baseUrl = 'https://engineersabroad.uvacreate.virginia.edu/sqlDatabasePHP'; //change based on local (http://localhost/CS4640/studyAbroad) or server
+    let baseUrl = 'http://localhost/CS4640/studyAbroad';
     this.http.get(baseUrl+'/getProgramsAndClasses.php?str='+stringParams)
       .subscribe((data)=>{
         //console.log(Object.keys(data).length);
