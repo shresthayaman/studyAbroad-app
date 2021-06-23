@@ -11217,7 +11217,7 @@ header.masthead {
   overflow: hidden;
   padding-top: calc(7rem + 72px);
   padding-bottom: 7rem;
-  background: url(https://engineering.virginia.edu/sites/default/files/common/offices/international-programs-office/PlacaDeReina%20%282%29-1_TristanWhite.png);
+  background: url('../../assets/images/headerBackground.png');
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: scroll;
