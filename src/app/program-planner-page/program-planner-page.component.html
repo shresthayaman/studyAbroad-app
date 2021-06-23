@@ -60,7 +60,7 @@
                         <div class="card-body"> 
                             <span style="color:red" class="error_message" id="error_msg"></span>
                             <div [ngStyle]="{'display':'flex', 'flex-direction': 'row'}">
-                                        <input type="text" id='addCourseInput'class="form-control" placeholder="Enter Course" aria-label="Enter Course" aria-describedby="basic-addon1">
+                                        <input type="text" id='addCourseInput'class="form-control" placeholder="Enter Course" aria-label="Enter Course" aria-describedby="basic-addon1" (keydown.enter)="addCourse()">
                                         <span class="error_message" id="error_msg"></span>
                                         <button type='submit' mat-icon-button (click)='addCourse()'>
                                             <mat-icon>add</mat-icon>
