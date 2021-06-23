@@ -9,8 +9,13 @@ import { HomepageComponent } from './homepage/homepage.component';
 
 
 const routes: Routes = [
+  { // insures that when naviagting to the page it redirect to the Homepage instead of an empty screen
+    path:'',
+    redirectTo: 'Homepage',
+    pathMatch: 'full' 
+  },
   {path: 'Homepage', component: HomepageComponent},
-  {path: 'FindProgramPage', component: FindProgramPageComponent},
+  // {path: 'FindProgramPage', component: FindProgramPageComponent},
   {path: 'TransferDatabasePage', component: TransferDatabasePageComponent},
   {path: 'ProgramPlannerPage', component: ProgramPlannerPageComponent}
 
