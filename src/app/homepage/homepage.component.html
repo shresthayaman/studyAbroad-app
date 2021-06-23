@@ -1,60 +1,107 @@
-<body class="w3-container">
-    <div class="jumbotron text-center">
-        <h1 class="display-4">Welcome!</h1>
-        <p class="lead">This website is designed to help UVA Engineering students find appropriate study abroad programs for their respective courses of study.</p>
-        
-        <div class="row">
-            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
-                <div ngxSlickItem *ngFor="let image of images" class="slide">
-                    <img src="{{ image.img }}" width="100%">
-                </div>
-            </ngx-slick-carousel>
-        </div>
-        <p class="lead">Slide through the above images to see some pictures taken of UVA Engineering Students' Education Abroad experiences</p>
-    </div>
-    <div class="container-1">
-        <div class = "box-1">
-            <h1 class="display-4">About the Office of Engineering International Programs</h1>
-            <h4 class="lead">
-                The Engineering International Programs Office's goal is to enable every UVA Engineering undergraduate student to obtain a significant international experience. School of Engineering International Programs offer information, advising and logistical support to engineering students interested in study, work or service learning abroad.
-            </h4>
-        </div>
-        <div class="box-2">
-            <h1 class="display-4">COVID UPDATE</h1>
-                <h4 class="lead">
-                    "The restriction on student international travel for university-related purposes has been extended to May 31, 2021, per University leadership. We remain hopeful that we will be able to facilitate a safe, staggered re-start of student mobility later in the summer of 2021."
-                </h4>
-                <a href="https://educationabroad.virginia.edu/" class="button">More Information</a>
-        </div>
-        <div class="box-3">
-            <h1 class="display-4">
-                Questions? Reach out to an Advisor
-            </h1>
-            <div>
-                <h4>Advisor: Maya Drake</h4>
-                <h4>Email: mel2j@virginia.edu</h4>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>One Page Wonder - Start Bootstrap Template</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+        rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+</head>
+
+<body id="page-top">
+    <!-- Header-->
+    <header class="masthead text-center text-white">
+        <div class="masthead-content">
+            <div class="container px-5">
+                <h1 class="masthead-heading mb-0">Welcome</h1>
+                <h3 class="masthead-subheading mb-0">Find the best study abroad program for you!</h3>
+                <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Learn More</a>
             </div>
         </div>
-    </div>
-    <div class="container-2">
-        <h1 class="display-4">Using this Website</h1>
-        <div class="box-4">
-            <h1 class="display-4">Find a Program Page</h1>
-            <h4 class="lead">
-                This page will help you select the optimal study abroad program based on a series of questions included on the page. 
-            </h4>
+
+    </header>
+    <!-- Content section 1-->
+    <section>
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center">
+                <div class="col-lg-6 order-lg-2">
+                    <div class="p-5"><img class="img-fluid rounded-circle" src="assets/images/Sunsetwater.jpg" alt="..." />
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="p-5">
+                        <h2 class="display-4">About the Office of Engineering International Programs</h2>
+                        <p>The Engineering International Programs Office's goal is to enable every UVA Engineering
+                            undergraduate student to obtain
+                            a significant international experience. School of Engineering International Programs offer
+                            information, advising and
+                            logistical support to engineering students interested in study, work or service learning abroad.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="box-5">
-            <h1 class="display-4">Transfer Database Page</h1>
-            <h4 class="lead">
-                Want to find specific study abroad programs by major, courses offered, or country? You can use this page to do so as it applies search queries to a database containing all programs offered.
-            </h4>
+    </section>
+    <section>
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center">
+                <div class="col-lg-6">
+                    <div class="p-5"><img class="img-fluid rounded-circle" src="assets/images/1stBottom.jpeg" alt="..." />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="p-5">
+                        <h2 class="display-4">Transfer Database Page</h2>
+                        <p>Want to find specific study abroad programs by major, courses offered, or country? You can use
+                            this page to do so as it
+                            applies search queries to a database containing all progarms offered.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="box-6">
-            <h1 class="display-4">Program Planner Page</h1>
-            <h4 class="lead">
-                On this page, you can create a thorough plan for the program that you are interested in. Similar to the first page, you can filter through programs and select one. Once you have selected a program, you can view approved courses and add ones you want to take. Finally, you can save this program plan that you created and come back to it at anyimel.
-            </h4>
+    </section>
+    <section id="scroll">
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center">
+                <div class="col-lg-6 order-lg-2">
+                    <div class="p-5"><img class="img-fluid rounded-circle" src="assets/images/mendoza.jpg" alt="..." /></div>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="p-5">
+                        <h2 class="display-4">Program Planner Page</h2>
+                        <p>On this page, you can create a thorough plan for the program that you are interested in. Similar to the first page, you
+                        can filter through programs and select one. Once you have selected a program, you can view approved courses and add ones
+                        you want to take. Finally, you can save this program plan that you created and come back to it anytime.
+                            </p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</body>	
+    </section>
+    <!-- Content section 2-->
+    
+    <!-- Content section 3-->
+    
+    <!-- Footer-->
+    <footer class="py-5 bg-black">
+        <div class="container px-5">
+            <p class="m-0 text-center text-white small">Copyright &copy; Your Website 2021</p>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>

@@ -24,6 +24,7 @@ export class HomepageComponent implements OnInit {
     "infinite": true,
     "autoplay": true,
   };
+/*
   imageObject: Array<object> = [{
     image: 'https://engineering.virginia.edu/sites/default/files/styles/media-large/public/1stBottom.jpeg?itok=M6sgH5jF',
     title: "Hiking Roy's Peak",
@@ -104,6 +105,7 @@ export class HomepageComponent implements OnInit {
 
   
   ];
+*/
   constructor() { }
 
   ngOnInit(): void {
