@@ -5,6 +5,7 @@ import {UserService} from "../user.service";
 import { plannerObject } from '../plannerObject';
 import { ChildActivationStart } from '@angular/router';
 
+
 @Component({
   selector: 'app-program-planner-page',
   templateUrl: './program-planner-page.component.html',
@@ -80,12 +81,15 @@ export class ProgramPlannerPageComponent implements OnInit {
   handleCheckApproved(e){
     if( (<HTMLInputElement>document.getElementById(e.target.id)).checked ){
       this.selectedCourses.push({
+        id: e.target.id,
         course: e.target.labels[0].innerText,
         approved: true,
       });
     }
     else{
-      this.selectedCourses.splice(this.selectedCourses.indexOf({course: e.target.labels[0].innerText, approved: true}),1);
+      //removes the unchecked item from the selectedCourses list  by filtering out the unchecked value from the list
+      //solution from: https://stackoverflow.com/questions/41865366/how-do-i-remove-an-object-from-an-array-with-a-matching-property
+      this.selectedCourses = this.selectedCourses.filter(({ id }) => id !== e.target.id);  
     }
   
   }
@@ -93,12 +97,15 @@ export class ProgramPlannerPageComponent implements OnInit {
   handleCheckUnapproved(e){
     if( (<HTMLInputElement>document.getElementById(e.target.id)).checked ){
       this.selectedCourses.push({
+        id: e.target.id,
         course: e.target.labels[0].innerText,
         approved: false,
       });
     }
     else{
-      this.selectedCourses.splice(this.selectedCourses.indexOf({course: e.target.labels[0].innerText, approved: false}),1);
+      //removes the unchecked item from the selectedCourses list  by filtering out the unchecked value from the list
+      //solution from: https://stackoverflow.com/questions/41865366/how-do-i-remove-an-object-from-an-array-with-a-matching-property
+      this.selectedCourses = this.selectedCourses.filter(({ id }) => id !== e.target.id);
     }
   }
 
@@ -108,8 +115,8 @@ export class ProgramPlannerPageComponent implements OnInit {
       term: this.selectedTerm,
     }
     let stringParams = JSON.stringify(params);
-    let baseUrl = 'https://engineersabroad.uvacreate.virginia.edu/sqlDatabasePHP'; //change based on local or server
-
+    let baseUrl = 'https://engineersabroad.uvacreate.virginia.edu/sqlDatabasePHP'; //change based on local (http://localhost/CS4640/studyAbroad) or server
+    //let baseUrl = 'http://localhost/CS4640/studyAbroad';
     this.http.get(baseUrl+'/getProgramsAndClasses.php?str='+stringParams)
       .subscribe((data)=>{
         //console.log(Object.keys(data).length);

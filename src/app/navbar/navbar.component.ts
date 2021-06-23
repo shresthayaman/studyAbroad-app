@@ -21,21 +21,14 @@ export class NavbarComponent implements OnInit {
   userSUModel = new User('','','','',false); //user signup model
 
   userRole = this.userservice.isLoggedIn?this.userservice.UserRoleFromSession: "";
-  //_userRoleSubsription:any;
 
   ngOnInit(): void {
     this.loggedInStatus = this.userservice.isLoggedIn;
     this.loggedInUser = this.userservice.isloggedInUserName;
     this.userRole = this.userservice.UserRoleFromSession
-    // this._userRoleSubsription = this.userservice.isUserRole.subscribe((value) => { 
-    //   this.userRole = value; 
-    // });
+
   }
 
-  // ngOnDestroy() {
-  //   //prevent memory leak when component destroyed
-  //    this._userRoleSubsription.unsubscribe();
-  //  }
 
   onSubmitLogin(form: any): void {
 
