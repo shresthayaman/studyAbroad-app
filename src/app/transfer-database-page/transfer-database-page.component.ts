@@ -196,8 +196,8 @@ export class TransferDatabasePageComponent implements OnInit {
   onSubmit(form: any):void{
     console.log('You submitted value: ', form);
     let params = JSON.stringify(form);
-    let baseUrl = 'http://localhost/CS4640/studyAbroad';
-    //let baseUrl = 'https://engineersabroad.uvacreate.virginia.edu/sqlDatabasePHP';
+    //let baseUrl = 'http://localhost/CS4640/studyAbroad';
+    let baseUrl = 'https://engineersabroad.uvacreate.virginia.edu/sqlDatabasePHP';
     this.http.get(baseUrl+'/getTransferedCourses.php?str='+params)
       .subscribe((data)=>{
         console.log(Object.keys(data).length);
