@@ -35,12 +35,13 @@ export class TransferDatabasePageComponent implements OnInit {
     "J-term",
   ]
 
+  // values of the input fields in the transfer database that dynamically change
   selectedMajor = "";
   selectedTerm = "";
   freeSearchEntry = "";
 
-  data = [];
-  empty = true;
+  data = []; //array that holds the converted data
+  empty = true; //boolean that states if the search result had any results
 
   mockdata = [
     {
@@ -121,6 +122,13 @@ export class TransferDatabasePageComponent implements OnInit {
 
   ]
 
+  /**
+   * This method will loop through the array of transferred courses obtained from the database and make objects for for each program 
+   * and add it an array of objects. This ensures that there is no duplicates in programs and that each program contains all the transferred courses 
+   * for that specific program. The form of the data is the same as the mock data format.
+   * @param arr The array of transferred courses that match the criterias from the search. Each transferred course is an element in this array
+   * @returns Returns array of objects. This object contains the following fields: program (string, courses(array of objects), country(string)
+   */
   convertToWantedFormat(arr){
     let arrayOfObj= [];
     for(let i=0; i<arr.length; i++ ){ //loop through array from database
@@ -177,6 +185,12 @@ export class TransferDatabasePageComponent implements OnInit {
 
   }
 
+  /**
+   * Gets the values of all the fields in the transfer database page (major, semester, and free search value)
+   * and sends a request to the backend SQL database to get all the transferred courses that match those criteria.
+   * Then populate it in this.data in its converted form.
+   * @param form 
+   */
   onSubmit(form: any):void{
     console.log('You submitted value: ', form);
     let params = JSON.stringify(form);

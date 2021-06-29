@@ -4,7 +4,7 @@
     </div>
     <div class="card-body">
         <div class="createProgramContainer">
-                <!-- Left side of page: search for courses based on major, term, and program  -->
+            <!-- Left side of page: search for courses based on major, term, and program  -->
             <div class="findProgramContianer">
                 <form #findCoursesForm="ngForm" (ngSubmit) = "onSubmitFindCourses(findCoursesForm.value)">
                     <div class="form-group rowLabelSelect">
@@ -30,7 +30,7 @@
                     </div>
                     <span style="color:red" class="error_message" id="program_error_msg"></span>
                     <div class=submitContianer>
-                        <button type="submit" class="btn btn-primary">Find Courses</button>
+                        <button type="submit" class="btn btn-primary">Get Transferred Courses</button>
                     </div>
                 </form>
             </div>
@@ -73,6 +73,10 @@
                                     <label class="form-check-label" [attr.for]="'addCourseID'+i">
                                     {{course}}
                                     </label>
+                                    
+                                    <a type="button" class="btn-floating" style="float:right;" (click)='deleteAddedCourse(course)' >
+                                        <i class="fas fa-trash-alt fa-sm" aria-hidden="true"></i>
+                                    </a>
                                     <br/>
                                 </ng-container>
                             
