@@ -196,7 +196,6 @@ export class ProgramPlannerPageComponent implements OnInit {
    * @returns Returns array of objects. This object contains the following fields: program (string, courses(array of objects), country(string)
    */
    convertToWantedFormat(arr){
-    console.log("convertToWantedForm:" + arr);
     let arrayOfObj= [];
     for(let i=0; i<arr.length; i++ ){ //loop through array from database
       if(arrayOfObj.length == 0){ //if its the first item being added then create an object to add

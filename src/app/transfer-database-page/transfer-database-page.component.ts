@@ -133,7 +133,7 @@ export class TransferDatabasePageComponent implements OnInit {
     let arrayOfObj= [];
     for(let i=0; i<arr.length; i++ ){ //loop through array from database
       if(arrayOfObj.length == 0){ //if its the first item being added then create an object to add
-         arrayOfObj.push(
+        arrayOfObj.push(
            {
              program: arr[i].program,
              courses: [
@@ -142,7 +142,8 @@ export class TransferDatabasePageComponent implements OnInit {
                  HostCourse: arr[i].HostCourse,
                  Semester: arr[i].semester,
                }
-             ]
+             ],
+             country: arr[i].country
 
            }
          )
@@ -171,7 +172,8 @@ export class TransferDatabasePageComponent implements OnInit {
                   HostCourse: arr[i].HostCourse,
                   Semester: arr[i].semester,
                 }
-              ]
+              ],
+              country: arr[i].country
  
             }
           )
@@ -194,8 +196,8 @@ export class TransferDatabasePageComponent implements OnInit {
   onSubmit(form: any):void{
     console.log('You submitted value: ', form);
     let params = JSON.stringify(form);
-    //let baseUrl = 'http://localhost/CS4640/studyAbroad';
-    let baseUrl = 'https://engineersabroad.uvacreate.virginia.edu/sqlDatabasePHP';
+    let baseUrl = 'http://localhost/CS4640/studyAbroad';
+    //let baseUrl = 'https://engineersabroad.uvacreate.virginia.edu/sqlDatabasePHP';
     this.http.get(baseUrl+'/getTransferedCourses.php?str='+params)
       .subscribe((data)=>{
         console.log(Object.keys(data).length);

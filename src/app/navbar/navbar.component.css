@@ -45,7 +45,14 @@ body{
     position: relative;
 }
 .navbar .nav li a {
-    color: #888;
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+}
+.nav-link:hover {
+    background-color: #E57200;
+    border-radius: 15px;
+   
 }
 .navbar .nav li a:hover {
     color: black;
