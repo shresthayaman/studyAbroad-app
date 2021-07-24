@@ -4,7 +4,7 @@ import { FindProgramPageComponent } from './find-program-page/find-program-page.
 import { TransferDatabasePageComponent } from './transfer-database-page/transfer-database-page.component';
 import { ProgramPlannerPageComponent } from './program-planner-page/program-planner-page.component';
 import { HomepageComponent } from './homepage/homepage.component';
-
+import { FeedbackPageComponent } from './feedback-page/feedback-page.component';
 
 
 
@@ -17,7 +17,8 @@ const routes: Routes = [
   {path: 'Homepage', component: HomepageComponent},
   // {path: 'FindProgramPage', component: FindProgramPageComponent},
   {path: 'TransferDatabasePage', component: TransferDatabasePageComponent},
-  {path: 'ProgramPlannerPage', component: ProgramPlannerPageComponent}
+  {path: 'ProgramPlannerPage', component: ProgramPlannerPageComponent},
+  {path: 'FeedbackPage', component: FeedbackPageComponent},
 
 ];
 
