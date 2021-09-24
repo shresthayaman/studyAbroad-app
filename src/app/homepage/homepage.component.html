@@ -25,7 +25,7 @@
             <div class="container px-5">
                 <h1 class="masthead-heading mb-0">Welcome</h1>
                 <h3 class="masthead-subheading mb-0">Find the best study abroad program for you!</h3>
-                <a class="btn btn-primary btn-xl rounded-pill mt-5" (click)="scrollToInfo()">Learn More</a>
+               <!---<a class="btn btn-primary btn-xl rounded-pill mt-5" (click)="scrollToInfo()">Learn More</a>---> 
             </div>
         </div>
 
@@ -54,10 +54,12 @@
     <section>
         <div class="container px-5">
             <div class="row gx-5 align-items-center">
+                
                 <div class="col-lg-6">
-                    <div class="p-5"><img class="img-fluid rounded-circle" src="assets/images/1stBottom.jpeg" alt="..." />
+                    <div class="p-5"><a class="nav-link" routerLink="TransferDatabasePage"><img class="img-fluid rounded-circle" src="assets/images/1stBottom.jpeg" alt="..." /></a>
                     </div>
                 </div>
+                
                 <div class="col-lg-6">
                     <div class="p-5">
                         <h2 class="display-4">Transfer Database</h2>
@@ -73,9 +75,11 @@
     <section >
         <div class="container px-5">
             <div class="row gx-5 align-items-center">
+                
                 <div class="col-lg-6 order-lg-2">
-                    <div class="p-5"><img class="img-fluid rounded-circle" src="assets/images/mendoza.jpg" alt="..." /></div>
+                    <div class="p-5"><a class="nav-link" routerLink="ProgramPlannerPage"><img class="img-fluid rounded-circle" src="assets/images/mendoza.jpg" alt="..." /></a></div>
                 </div>
+                
                 <div class="col-lg-6 order-lg-1">
                     <div class="p-5">
                         <h2 class="display-4">Program Planner</h2>
