@@ -19,7 +19,7 @@ export class TransferDatabasePageComponent implements OnInit {
     "Aerospace Engineering", 
     "Biomedical Engineering", 
     "Chemical Engineering", 
-    "Civil Engineeirng", 
+    "Civil Engineering", 
     "Computer Engineering", 
     "Computer Science", 
     "Electrical Engineering", 
