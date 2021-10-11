@@ -29,7 +29,7 @@ export class ProgramPlannerPageComponent implements OnInit {
     "Aerospace Engineering", 
     "Biomedical Engineering", 
     "Chemical Engineering", 
-    "Civil Engineeirng", 
+    "Civil Engineering", 
     "Computer Engineering", 
     "Computer Science", 
     "Electrical Engineering", 
