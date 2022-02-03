@@ -18,7 +18,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FeedbackPageComponent } from './feedback-page/feedback-page.component';
-import { PhotocontestPageComponent } from './photocontest-page/photocontest-page.component';
+//import { PhotocontestPageComponent } from './photocontest-page/photocontest-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +29,7 @@ import { PhotocontestPageComponent } from './photocontest-page/photocontest-page
     HomepageComponent,
     FooterComponent,
     FeedbackPageComponent,
-    PhotocontestPageComponent
+    //PhotocontestPageComponent
   ],
   imports: [
     BrowserModule,
