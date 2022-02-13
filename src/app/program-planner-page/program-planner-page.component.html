@@ -7,14 +7,14 @@
             <!-- Left side of page: search for courses based on major, term, and program  -->
             <div class="findProgramContianer">
                 <form #findCoursesForm="ngForm" (ngSubmit) = "onSubmitFindCourses(findCoursesForm.value)">
-                    <!-- <div class="form-group rowLabelSelect">
+                    <div class="form-group rowLabelSelect">
                         <label style="margin-top: 7px; margin-right: 7px;" for="majorSelect">Program Type: </label>
-                        <select [(ngModel)]="selectedMajor" name="selectedMajor" class="form-control" id="majorSelect"
+                        <select [(ngModel)]="selectedType" name="selectedType" class="form-control" id="typeSelect" (change)="onChangeSelection()"
                             (change)="onChangeSelection()">
                             <option value="">Select a program type</option>>
-                            <option *ngFor="let major of majors">{{major}}</option>
+                            <option *ngFor="let type of types">{{type}}</option>
                         </select>
-                    </div> -->
+                    </div> 
                     <div class="form-group rowLabelSelect">
                         <label style="margin-top: 7px; margin-right: 7px;" for="majorSelect">Major: </label>
                         <select [(ngModel)]="selectedMajor" name="selectedMajor" class="form-control" id="majorSelect" (change)="onChangeSelection()">

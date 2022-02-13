@@ -18,11 +18,16 @@ export class ProgramPlannerPageComponent implements OnInit {
   ngOnInit(): void {}
 
   //selected fields for input. They dynamically get set to a specific value based on the input
+  selectedType = "";
   selectedMajor = "";
   selectedTerm = "";
   selectedProgram = "";
   selectedCountry = ""; 
-
+  //all the type selections
+  types = [
+    "Academic",
+    "Research/Internship"
+  ]
   // all the majors for selection
   majors = [
     "Any",
@@ -157,6 +162,7 @@ export class ProgramPlannerPageComponent implements OnInit {
    **/
   onChangeSelection(){ 
     let params = {
+      type: this.selectedType,
       major: this.selectedMajor,
       term: this.selectedTerm,
       country: this.selectedCountry
