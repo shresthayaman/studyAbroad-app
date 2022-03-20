@@ -22,6 +22,7 @@ export class ProgramPlannerPageComponent implements OnInit {
   selectedMajor = "";
   selectedTerm = "";
   selectedProgram = "";
+  selectedProgram1 = "";
   selectedCountry = "";
   //all the type selections
   types = [
@@ -285,6 +286,7 @@ export class ProgramPlannerPageComponent implements OnInit {
 
   }
 
+
   /**
    * Check to insure proper fields are selected when the "Get Transferred Courses" button is clicked. If not then presents error message
    * @returns valid which is a boolean that states if the information was valid or not for obtaining transferred courses
@@ -338,7 +340,7 @@ export class ProgramPlannerPageComponent implements OnInit {
 
       }
     }
-
+  
     // creates a planner Object with all the infomration (program, selected transferred courses, and country)
     let plannerObj = {
       program: this.selectedProgram,
@@ -346,6 +348,7 @@ export class ProgramPlannerPageComponent implements OnInit {
       country: this.selectedCountry
 
     }
+    
 
     //if user is not logged in add to planner
     if (this.userservice.isLoggedIn == false) {
@@ -373,11 +376,21 @@ export class ProgramPlannerPageComponent implements OnInit {
 
   }
 
+  // onSubmit1DisplayCourses(){
+    
 
+  //   let plannerObj1 = {
+  //     Program: this.selectedProgram1,
+  //   }
+
+  // }
   /**
    * Removes a program from planner by specifc index. If the user is also logged in then, it also removes the planner object 
    * from SQL database and current session
+   * 
    */
+
+
   removeProgram(i) {
     let removedPlannerObject = new plannerObject(this.userservice.isloggedInUserEmail, this.planner[i].program, JSON.stringify(this.planner[i].courses), this.planner[i].country)
 
