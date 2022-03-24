@@ -5,6 +5,7 @@ import { TransferDatabasePageComponent } from './transfer-database-page/transfer
 import { ProgramPlannerPageComponent } from './program-planner-page/program-planner-page.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FeedbackPageComponent } from './feedback-page/feedback-page.component';
+import { InternshipResearchPageComponent } from './internship-research-page/internship-research-page.component';
 
 
 
@@ -19,6 +20,8 @@ const routes: Routes = [
   {path: 'TransferDatabasePage', component: TransferDatabasePageComponent},
   {path: 'ProgramPlannerPage', component: ProgramPlannerPageComponent},
   {path: 'FeedbackPage', component: FeedbackPageComponent},
+  {path: 'InternshipResearchPage', component: InternshipResearchPageComponent}
+
 
 ];
 

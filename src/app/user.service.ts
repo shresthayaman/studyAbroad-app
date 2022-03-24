@@ -1,6 +1,7 @@
 import { Injectable, ɵɵpureFunction1 } from '@angular/core';
 import { User } from './user';
 import { plannerObject } from './plannerObject';
+import { intresObject } from './intresObject';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { BehaviorSubject,Observable } from 'rxjs';
 
@@ -117,14 +118,26 @@ export class UserService {
     sessionStorage.setItem('planner', JSON.stringify(plannerItems))
   }
 
+  setSessionForIntRes(intresItems){
+    sessionStorage.setItem('intres', JSON.stringify(intresItems))
+  }
+
   get PlannerFromSession(){
     
     return JSON.parse(sessionStorage.getItem('planner')) == null? [] : JSON.parse(sessionStorage.getItem('planner'));
   }
 
+  get IntResFromSession(){
+    return JSON.parse(sessionStorage.getItem('intres')) == null? [] : JSON.parse(sessionStorage.getItem('intres'));
+  }
+
   //add planner object to SQL database
   addPlanerObjToDatabase(plannerObj: plannerObject): Observable<any>{
     return this.http.post(this.baseUrl + '/addToPlanner.php', plannerObj)
+  }
+
+  addIntResObjToDatabase(intresObj: intresObject): Observable<any>{
+    return this.http.post(this.baseUrl + '/addToIntRes.php', intresObj)
   }
 
   // Get all planner object specifcally for the user (search sql planner table for useremail)
@@ -141,6 +154,15 @@ export class UserService {
       
   }
 
+  getUserIntResObjects(email){
+    let params = {
+      email: email
+    }
+    let stringParams = JSON.stringify(params);
+    let baseUrl = 'https://engineersabroad.uvacreate.virginia.edu/sqlDatabasePHP'
+    return this.http.get(baseUrl+'/getUserIntResObjects.php?str='+stringParams)
+  }
+
   // once logged in call this function to get planner items from SQL
   onLoginGetPlannerDataForUser(){
     if(this.isLoggedIn == true){
@@ -153,6 +175,20 @@ export class UserService {
       })
     }
   }
+
+
+  onLoginGetIntResDataForUser(){
+    if(this.isLoggedIn == true){
+      this.getUserIntResObjects(this.isloggedInUserEmail)
+      .subscribe((data)=>{
+        this.addFromSQLToPlanner(data)
+        window.location.reload();
+      }, (error)=>{
+        console.log('Error geeting planner data', error);  // An error occurs, handle an error in some way
+      })
+    }
+  }
+
 
   addFromSQLToPlanner(userPlannerData){
     if(userPlannerData==false || Object.keys(userPlannerData).length == 0){ //if nothing could be found make the data equal to empty and the programs displayed to empty
@@ -177,10 +213,37 @@ export class UserService {
     }
   }
 
+  addFromSQLToIntRes(userIntResData){
+    if(userIntResData==false || Object.keys(userIntResData).length == 0){ //if nothing could be found make the data equal to empty and the programs displayed to empty
+      console.log("No planner data for user")
+    }
+    else{
+      let initialIntRes = [];
+      try{
+        for(let i = 0; i<userIntResData.length; i++){
+          console.log()
+          let intresObj = {
+            program: userIntResData[i].program,
+            courses: JSON.parse(userIntResData[i].transferredCourses), //convert string stored in sql back to object
+            country: userIntResData[i].country
+          }
+          initialIntRes.push(intresObj);
+        }
+        this.setSessionForPlanner(initialIntRes); //update planner in session
+      }catch(e){
+        console.error(e);
+      }
+    }
+  }
+
 
   //delete planner object from SQL database
   deletePlanerObjFromDatabase(plannerObj: plannerObject): Observable<any>{
     return this.http.post(this.baseUrl + '/deleteFromPlanner.php', plannerObj)
+    
+  }
+  deleteIntResObjFromDatabase(intresObj: intresObject): Observable<any>{
+    return this.http.post(this.baseUrl + '/deleteFromIntRes.php', intresObj)
     
   }
 

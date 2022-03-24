@@ -40,9 +40,6 @@
                     <div class=submitContianer>
                         <button type="submit" class="btn btn-primary">Get Transferred Courses</button>
                     </div>
-                    <div class=submitContianer1>
-                        <button type="submit1" class="btn btn-primary">Add Internship or Research Program</button>
-                    </div>
                 </form>
             </div>
         
@@ -109,21 +106,6 @@
                         </div> 
                     </div>
                 </div>
-                <div class="internshipsAndResearch">
-                    <div [ngStyle]="{'width': '100%', 'height': '100%'}" class="card">
-                        <div class="card-header" style="background-color: #3f4444; color: white">Internships and Research</div>
-                        <div class="card-body" style="display:flex; flex-direction: column; overflow-y: auto; max-height: 95% ">
-                            <div *ngFor='let course of selectedCourses'>
-                                <div>
-                                    {{course.course}}</div>
-                    
-                            </div>
-                            <button *ngIf='selectedCourses.length != 0' type="submit" class="btn btn-primary" (click)="addToPlanner()">Add
-                                to Planner</button>
-                        </div>
-                    </div>
-
-                </div> 
             </div>
                 
             
