@@ -58,7 +58,9 @@
 
 body {
   margin: 0;
-  font-family: "franklin-gothic-urw-cond",Arial,sans-serif;
+  font-family: "Franklin Gothic Medium",
+    Arial,
+    sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -94,7 +96,9 @@ h1,
 .h1 {
   margin-top: 0;
   margin-bottom: 0.5rem;
-  font-family: "franklin-gothic-urw-cond",Arial,sans-serif;
+  font-family: "Franklin Gothic Medium",
+    Arial,
+    sans-serif;
   font-weight: 700;
   line-height: 1.0;
 }
@@ -5818,7 +5822,9 @@ fieldset:disabled .btn {
   z-index: 1080;
   display: block;
   margin: 0;
-  font-family: "franklin-gothic-urw-cond",Arial,sans-serif;
+  font-family: "Franklin Gothic Medium",
+    Arial,
+    sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -5932,7 +5938,7 @@ fieldset:disabled .btn {
   z-index: 1070;
   display: block;
   max-width: 276px;
-  font-family: "franklin-gothic-urw-cond",Arial,sans-serif;
+  font-family: "Franklin Gothic Medium",Arial,sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
