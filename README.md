@@ -2,9 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.2.
 
-#*Version Disclaimer*
+#*Version Disclaimer*#
 
 *You may have to downgrade your version of Node.js in order to run on the development server*
+*Recommended Node.js version is 16.13.1*
 
 
 ## Development server
