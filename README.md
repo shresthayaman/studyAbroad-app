@@ -1,6 +1,8 @@
 # StudyAbroadApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.2.
+*You may have to downgrade your version of Node.js in order to run on the development server*
+
 
 ## Development server
 
