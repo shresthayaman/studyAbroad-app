@@ -1,6 +1,18 @@
 <br>
-<h3 class="headerContianer"> Transfered Courses Database</h3>
+<h3 class="headerContianer"> Transferred Courses Database</h3>
 <br>
+<br />
+<div class="alert alert-info" role="alert" style="margin-left: 10px; margin-right: 10px;">
+  This tool utilizes a database of past transferred courses that students have previously taken in their study abroad
+  experience.
+  Therefore, please be advised that some courses and programs might not be avaliable anymore (Both for UVA and Host
+  Institution).
+  If you have any concerns or questions about what can and cannot transfer for UVA credit, please contact your
+  engineering major study abroad
+  advisor which can be found in the following <a href="https://engineering.virginia.edu/node/58876/#accordion59362"
+    target="_blank" class="alert-link">link</a>.
+</div>
+<br />
 <div class="formContainer">
     <form #searchForm="ngForm" (ngSubmit) = "onSubmit(searchForm.value)">
         <div class="inlineInputs">
@@ -29,10 +41,10 @@
     </form>
   </div>
 
-  <br/>
+ 
 
 
-<!-- render result based on prior form inputs and generate table with nested *ngFor -->
+<!-- render result based on prior form inputs and generate table with nested *ngFor (using Bootstrap accoridans)-->
   <div class="card">
     <div style="text-align:center;" class= "card-header" style="background-color: #3f4444; color: white">
      Results
@@ -45,6 +57,7 @@
               <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapse-' + i" [attr.aria-expanded]="false" [attr.aria-controls] = "'collapse-' + i">
                 {{program.program}}
               </button>
+              <span style="float:right;">{{program.country}}</span>
             </h5>
           </div>
       
@@ -76,6 +89,7 @@
         No results! Please try a different search.
       </div>
 		</ng-template>
+    
   </div> 
 
   

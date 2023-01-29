@@ -4,9 +4,17 @@
     </div>
     <div class="card-body">
         <div class="createProgramContainer">
-                <!-- Left side of page: search for courses based on major, term, and program  -->
+            <!-- Left side of page: search for courses based on major, term, and program  -->
             <div class="findProgramContianer">
                 <form #findCoursesForm="ngForm" (ngSubmit) = "onSubmitFindCourses(findCoursesForm.value)">
+                    <div class="form-group rowLabelSelect">
+                        <label style="margin-top: 7px; margin-right: 7px;" for="majorSelect">Program Type: </label>
+                        <select [(ngModel)]="selectedType" name="selectedType" class="form-control" id="typeSelect" (change)="onChangeSelection()"
+                            (change)="onChangeSelection()">
+                            <option value="">Select a program type</option>>
+                            <option *ngFor="let type of types">{{type}}</option>
+                        </select>
+                    </div> 
                     <div class="form-group rowLabelSelect">
                         <label style="margin-top: 7px; margin-right: 7px;" for="majorSelect">Major: </label>
                         <select [(ngModel)]="selectedMajor" name="selectedMajor" class="form-control" id="majorSelect" (change)="onChangeSelection()">
@@ -30,7 +38,7 @@
                     </div>
                     <span style="color:red" class="error_message" id="program_error_msg"></span>
                     <div class=submitContianer>
-                        <button type="submit" class="btn btn-primary">Find Courses</button>
+                        <button type="submit" class="btn btn-primary">Get Transferred Courses</button>
                     </div>
                 </form>
             </div>
@@ -73,6 +81,10 @@
                                     <label class="form-check-label" [attr.for]="'addCourseID'+i">
                                     {{course}}
                                     </label>
+                                    
+                                    <a type="button" class="btn-floating" style="float:right;" (click)='deleteAddedCourse(course)' >
+                                        <i class="fas fa-trash-alt fa-sm" aria-hidden="true"></i>
+                                    </a>
                                     <br/>
                                 </ng-container>
                             
@@ -93,7 +105,7 @@
                             <button *ngIf='selectedCourses.length != 0'type="submit" class="btn btn-primary" (click)="addToPlanner()">Add to Planner</button>
                         </div> 
                     </div>
-                </div> 
+                </div>
             </div>
                 
             

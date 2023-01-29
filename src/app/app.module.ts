@@ -17,6 +17,9 @@ import { FooterComponent } from './footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { FeedbackPageComponent } from './feedback-page/feedback-page.component';
+import { InternshipResearchPageComponent } from './internship-research-page/internship-research-page.component';
+//import { PhotocontestPageComponent } from './photocontest-page/photocontest-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +28,10 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     TransferDatabasePageComponent,
     ProgramPlannerPageComponent,
     HomepageComponent,
-    FooterComponent
+    FooterComponent,
+    FeedbackPageComponent,
+    InternshipResearchPageComponent,
+    //PhotocontestPageComponent
   ],
   imports: [
     BrowserModule,

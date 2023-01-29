@@ -1,0 +1,62 @@
+.createProgramContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+@media only screen and (max-width: 768px) {
+  .createProgramContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .findProgramContianer {
+    margin-left: 40%;
+    margin-bottom: 30px;
+  }
+}
+
+.findProgramContianer {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  width: 30%;
+}
+.rightSide {
+  display: flex;
+  flex-direction: row;
+  height: 700px;
+  width: 100%;
+}
+.approvedAddContainer {
+  /* display:flex; 
+    flex-direction: column;  */
+  width: 50%;
+}
+.selectedCoursesContainer {
+  width: 50%;
+}
+
+.rowLabelSelect {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.approvedBackgroundColor {
+  margin-bottom: 3px;
+  padding: 10px;
+  border-bottom: 1px solid black;
+  background-color: rgba(144, 238, 144, 0.527);
+}
+.unapprovedBackgroundColor {
+  margin-bottom: 3px;
+  padding: 10px;
+  border-bottom: 1px solid black;
+  background-color: rgba(219, 60, 12, 0.527);
+}
+.deleteIcon {
+  color: black;
+}
+.deleteIcon:hover {
+  color: red;
+}

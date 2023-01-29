@@ -58,9 +58,8 @@
 
 body {
   margin: 0;
-  font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: franklin-gothic-urw-cond, Arial, sans-serif;
+
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -96,11 +95,10 @@ h1,
 .h1 {
   margin-top: 0;
   margin-bottom: 0.5rem;
-  font-family: "Catamaran", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-weight: 800;
-  line-height: 1.2;
+  font-family: franklin-gothic-urw-cond, Arial, sans-serif;
+
+  font-weight: 700;
+  line-height: 1.0;
 }
 
 h1,
@@ -242,7 +240,7 @@ sup {
 }
 
 a {
-  color: #ee0979;
+  color:  blue;
   text-decoration: underline;
 }
 a:hover {
@@ -533,6 +531,7 @@ progress {
   font-size: calc(1.475rem + 2.7vw);
   font-weight: 300;
   line-height: 1.2;
+  color: blue;
 }
 @media (min-width: 1200px) {
   .display-4 {
@@ -3652,11 +3651,11 @@ fieldset:disabled .btn {
 
 .btn-link {
   font-weight: 400;
-  color: #ee0979;
+  color: blue;
   text-decoration: underline;
 }
 .btn-link:hover {
-  color: #be0761;
+  color: blue;
 }
 .btn-link:disabled,
 .btn-link.disabled {
@@ -3956,7 +3955,7 @@ fieldset:disabled .btn {
 .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #ee0979;
+  color: blue;
 }
 .dropdown-item.disabled,
 .dropdown-item:disabled {
@@ -4000,7 +3999,7 @@ fieldset:disabled .btn {
 .dropdown-menu-dark .dropdown-item.active,
 .dropdown-menu-dark .dropdown-item:active {
   color: #fff;
-  background-color: #ee0979;
+  background-color: blue;
 }
 .dropdown-menu-dark .dropdown-item.disabled,
 .dropdown-menu-dark .dropdown-item:disabled {
@@ -4127,7 +4126,7 @@ fieldset:disabled .btn {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
-  color: #ee0979;
+  color: blue;
   text-decoration: none;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out;
@@ -4139,7 +4138,7 @@ fieldset:disabled .btn {
 }
 .nav-link:hover,
 .nav-link:focus {
-  color: #be0761;
+  color: blue;
 }
 .nav-link.disabled {
   color: #6c757d;
@@ -4187,7 +4186,7 @@ fieldset:disabled .btn {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #ee0979;
+  background-color: blue;
 }
 
 .nav-fill > .nav-link,
@@ -4871,8 +4870,9 @@ fieldset:disabled .btn {
 .page-item.active .page-link {
   z-index: 3;
   color: #fff;
-  background-color: #ee0979;
-  border-color: #ee0979;
+  color: blue;
+  background-color:  blue;
+  border-color:  blue;
 }
 .page-item.disabled .page-link {
   color: #6c757d;
@@ -5820,9 +5820,8 @@ fieldset:disabled .btn {
   z-index: 1080;
   display: block;
   margin: 0;
-  font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: franklin-gothic-urw-cond, Arial, sans-serif;
+
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -5936,9 +5935,7 @@ fieldset:disabled .btn {
   z-index: 1070;
   display: block;
   max-width: 276px;
-  font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "Franklin Gothic Medium",Arial,sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -6442,7 +6439,7 @@ fieldset:disabled .btn {
 }
 
 .link-primary {
-  color: #ee0979;
+  color: blue;
 }
 .link-primary:hover,
 .link-primary:focus {
