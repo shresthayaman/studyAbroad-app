@@ -4,8 +4,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 #*Version Disclaimer*#
 
-*You may have to downgrade your version of Node.js in order to run on the development server*
+*You may have to downgrade your version of Node.js in order to run on the development server.*
 *Recommended Node.js version is 16.13.1*
+*Use https://github.com/coreybutler/nvm-windows/releases 'nvm' if you are on Windows.
+*Use 'n' if you are on Mac/Unix
+
 
 
 ## Development server
