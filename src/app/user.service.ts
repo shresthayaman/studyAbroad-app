@@ -23,7 +23,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   baseUrl = 'https://engineersabroad.uvacreate.virginia.edu/sqlDatabasePHP';
-  //baseUrl = 'http://localhost/CS4640/studyAbroad'
+  //baseUrl = 'http://localhost/studyAbroad'
 
   createUser(user: User): Observable<any>{
     return this.http.post(this.baseUrl + '/register.php', user);
