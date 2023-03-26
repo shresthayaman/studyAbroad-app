@@ -1,5 +1,15 @@
+@font-face {
+  font-family: 'Athelas';
+  font-style: normal;
+  font-weight: 400;
+  src: 
+       url('../../assets/fonts/athelas/Athelas-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../../assets/fonts/athelas/Athelas-Regular.woff') format('woff'), /* Modern Browsers */
+       url('../../assets/fonts/athelas/Athelas-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
+}
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin&display=swap');
+
 body {
-  font-family: "Varela Round", sans-serif;
 }
 .form-control {
   box-shadow: none;
@@ -31,37 +41,54 @@ body {
 .navbar .navbar-brand,
 .navbar .navbar-brand:hover,
 .navbar .navbar-brand:focus {
-  padding-left: 0;
-  font-size: 20px;
-  padding-right: 50px;
+  padding-left: 1rem;
   color: #134881;
 }
 .navbar .navbar-brand b {
   font-weight: bold;
-  color: #e57200;
 }
 .navbar .form-inline {
   display: inline-block;
 }
 .navbar .nav li {
-  position: relative;
+  /* position: relative; */
 }
 .navbar .nav li a {
-  font-size: 16px;
+  font-size: 15px;
+  font-family: 'Libre Franklin', sans-serif;
   color: black;
-  font-weight: bold;
 }
-.nav-link:hover {
-  background-color: #e57200;
-  border-radius: 15px;
+
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+  color: #000000;
 }
+
+.hover-underline-animation::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000000;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
 .navbar .nav li a:hover {
   color: black;
 }
 .navbar .nav .btn-primary,
 .navbar .nav .btn-primary:active {
   color: #fff;
-  background: #e57200;
   padding-top: 8px;
   padding-bottom: 6px;
   vertical-align: middle;

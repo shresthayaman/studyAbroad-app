@@ -170,6 +170,7 @@ export class ProgramPlannerPageComponent implements OnInit {
     }
     let stringParams = JSON.stringify(params);
     let baseUrl = 'https://engineersabroad.uvacreate.virginia.edu/sqlDatabasePHP'; //change based on local (http://localhost/CS4640/studyAbroad) or server
+    
     //let baseUrl = 'http://localhost/CS4640/studyAbroad';
     this.http.get(baseUrl + '/getProgramsAndClasses.php?str=' + stringParams)
       .subscribe((data) => {
