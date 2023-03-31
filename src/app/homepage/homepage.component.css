@@ -11246,3 +11246,10 @@ header.masthead .masthead-content .masthead-subheading {
     font-size: 2rem;
   }
 }
+
+.btn.subtle-round{
+  border-radius: 300px;
+
+}
+
+/* SCROLL ANIMATION */
