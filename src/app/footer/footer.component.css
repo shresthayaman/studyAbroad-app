@@ -55,3 +55,7 @@
   border-color: white;
   font-size: small;
 }
+
+.feedbackForm{
+  text-decoration: underline;
+}
