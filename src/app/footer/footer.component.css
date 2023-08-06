@@ -48,3 +48,14 @@
   ul.social-media-list img:hover {
     background-color: #63D1F4;
 }
+
+.btn.subtle{
+  border-radius: 300px;
+  background-color: #ffffff00;
+  border-color: white;
+  font-size: small;
+}
+
+.feedbackForm{
+  text-decoration: underline;
+}

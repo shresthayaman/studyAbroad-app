@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default navbar-expand-lg navbar-light">
 	<div class="navbar-header d-flex col">
-		<a class="navbar-brand" href="Homepage">UVA Engineering <b>International Programs</b></a>  		
+		<a class="navbar-brand" href="Homepage"><img style="width: 15rem;" src="../../assets/EIP_new_logo.svg"></a>  		
 		<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle navbar-toggler ml-auto">
 			<span class="navbar-toggler-icon"></span>
 			<span class="icon-bar"></span>
@@ -9,13 +9,11 @@
 		</button>
 	</div>
 	
-	<div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+	<div id="navbarCollapse" class="collapse navbar-collapse justify-content-center">
 		<ul class="nav navbar-nav">
-			
-			<!-- <li class="nav-item active"><a class="nav-link" routerLink="FindProgramPage">Find a Program</a></li> -->
-			<li class="nav-item"><a  class="nav-link" routerLink="TransferDatabasePage" mdbWavesEffect>Transfer Database</a></li>			
-			<li class="nav-item "><a class="nav-link" routerLink="ProgramPlannerPage" mdbWavesEffect>Program Planner</a></li>
-			<li class="nav-item"><a class="nav-link" routerLink="InternshipResearchPage" mdbWavesEffect>Research and Internship Programs</a></li>
+			<li class="nav-item"><a  class="nav-link hover-underline-animation" routerLink="TransferDatabasePage" mdbWavesEffect>Find Courses</a></li>			
+			<li class="nav-item "><a class="nav-link hover-underline-animation" routerLink="ProgramPlannerPage" mdbWavesEffect>Program Planner</a></li>
+			<li class="nav-item"><a class="nav-link hover-underline-animation" routerLink="InternshipResearchPage" mdbWavesEffect>Research and Internship Programs</a></li>
 		</ul>
 		
 		<div *ngIf="!loggedInStatus; else loggedInBlock" class="nav navbar-nav navbar-right ml-auto">	
@@ -59,7 +57,7 @@
 					</ul>
 				</li>
 				<li class="nav-item">
-					<a href="#" style="color:white" data-toggle="dropdown" class="btn btn-primary dropdown-toggle get-started-btn mt-1 mb-1">Sign up</a>
+					<a href="#" style="color:white" data-toggle="dropdown" class="btn btn-primary rounded-pill dropdown-toggle get-started-btn mt-1 mb-1">Sign up</a>
 					<ul class="dropdown-menu form-wrapper" onclick= "event.stopPropagation()">					
 						<li>
 							<div *ngIf="!registeredStatus; else registeredBlock">

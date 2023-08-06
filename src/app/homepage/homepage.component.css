@@ -10,6 +10,7 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ 
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -4236,13 +4237,11 @@ fieldset:disabled .btn {
   justify-content: space-between;
 }
 .navbar-brand {
-  padding-top: 0.3125rem;
-  padding-bottom: 0.3125rem;
   margin-right: 1rem;
-  font-size: 1.25rem;
   text-decoration: none;
   white-space: nowrap;
 }
+
 .navbar-nav {
   display: flex;
   flex-direction: column;
@@ -11209,12 +11208,14 @@ html {
   letter-spacing: 0.1rem;
 }
 
+/* HEADER CSS */
+
 header.masthead {
   position: relative;
   overflow: hidden;
   padding-top: calc(7rem + 72px);
   padding-bottom: 7rem;
-  background: url('../../assets/images/headerBackground.png');
+  background: url('../../assets/images/masthead2.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: scroll;
@@ -11237,9 +11238,18 @@ header.masthead .masthead-content .masthead-subheading {
     padding-bottom: 10rem;
   }
   header.masthead .masthead-content .masthead-heading {
-    font-size: 6rem;
+    font-size: 5rem;
+    font-family: 'Libre Franklin', sans-serif;
+    padding: 2rem;
   }
   header.masthead .masthead-content .masthead-subheading {
-    font-size: 4rem;
+    font-size: 2rem;
   }
 }
+
+.btn.subtle-round{
+  border-radius: 300px;
+
+}
+
+/* SCROLL ANIMATION */
